@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CampusBallot | Student Elections</title>
+    <title>CampusVoting | Student Elections</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="topbar">
         <div>
-            <h1>CampusBallot</h1>
-            <p>Your campus. Your choice.</p>
+            <h1>CampusVoting</h1>
+            <p>Transparent campus elections</p>
         </div>
 
         <button id="connectBtn">Connect MetaMask</button>
@@ -21,7 +21,7 @@
         <section class="hero">
             <p class="eyebrow">STUDENT ELECTIONS</p>
             <h2 id="electionName">Campus Council Election</h2>
-            <p>Review the candidates, connect your wallet, and help choose your next campus council.</p>
+            <p>Choose your candidate and cast your vote on the blockchain.</p>
 
             <div class="status-row">
                 <span id="electionStatus" class="badge">Not connected</span>
@@ -30,8 +30,7 @@
         </section>
 
         <section class="notice">
-            <strong>Three steps to make your voice count</strong>
-            <ol class="voting-steps"><li>Connect MetaMask</li><li>Review the candidates</li><li>Confirm your vote</li></ol>
+            <strong>How voting works</strong>
             <p>
                 Each wallet can vote once. Transactions are recorded on the
                 blockchain, and votes are publicly observable.
@@ -48,7 +47,7 @@
             </div>
 
             <div id="candidateList" class="candidate-grid">
-                <p>Connect your wallet to view the registered candidates and their live vote totals.</p>
+                <p>Connect your wallet to load candidates.</p>
             </div>
 
             <div id="winnerSection" class="panel hidden">
@@ -64,7 +63,7 @@
 
             <form id="candidateForm">
                 <label for="candidateName">Candidate name</label>
-                <input id="candidateName" maxlength="80" placeholder="e.g. Obijit Singh or Safin Joash" required>
+                <input id="candidateName" maxlength="80" required>
 
                 <label for="manifesto">Manifesto</label>
                 <textarea id="manifesto" maxlength="500" rows="3"></textarea>
@@ -91,8 +90,7 @@
     </main>
 
     <footer>
-        <p>Submitted by <strong>Shreyan Raghuvanshi</strong> · 230905247</p>
-        <p>CSE4444 · Blockchain Technology · Assignment 2</p>
+        <p>CSE4444 · Blockchain Technology · Submitted by Shreyan Raghuvanshi · 230905247</p>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.5/ethers.umd.min.js"></script>

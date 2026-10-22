@@ -1,23 +1,19 @@
-# CampusBallot
+# CampusVoting — Blockchain-Based Voting DApp
 
-**Assignment submission:** Shreyan Raghuvanshi
+**Student:** Shreyan Raghuvanshi
 
 **Registration number:** 230905247
 
-**Course:** CSE4444 Blockchain Technology - Assignment 2
+**Assignment:** CSE4444 Blockchain Technology — Assignment 2
 
-**Repository:** https://github.com/gingerale911/CampusBallot
-
-The frontend is customized for this submission with a green council-election theme, a voting guide, accessible focus styles, and candidate examples Obijit Singh and Safin Joash. Candidate names shown after connecting are read from the blockchain; register these names on a fresh deployment. Existing on-chain names cannot be renamed by editing HTML.
+**GitHub repository:** https://github.com/gingerale911/CampusBallot
 
 ## Submission files
 
 - [Word submission](submission/Shreyan_Raghuvanshi_230905247_BT_Assignment2.docx)
 - [PDF for LMS](submission/Shreyan_Raghuvanshi_230905247_BT_Assignment2.pdf)
-- [Reproducible contract tests](tests/contract.cjs) and [observed results](tests/results.json)
-
-The supplied Git history is retained. The submission identity above identifies the student submitting this customized version.
-
+- [Automated contract tests](tests/contract.cjs)
+- [Recorded automated test results](tests/results.json)
 
 ## 1. Project Overview
 
@@ -174,7 +170,7 @@ The frontend provides the user interface, while the deployed smart contract is r
 
 ## 6. Deployment Details
 
-The existing frontend is configured for the local Ganache address below. A running chain at that address was not available during this review, so this is a configuration record, not a newly verified deployment. Deploy afresh in Remix and update `frontend/app.js` before use.
+The application is deployed on a local Ganache blockchain for development and testing.
 
 | Parameter | Value |
 |---|---|
@@ -185,10 +181,10 @@ The existing frontend is configured for the local Ganache address below. A runni
 | Smart Contract Name | `CampusVoting` |
 | Solidity Compiler | `0.8.24` |
 | EVM Version | `Paris` |
-| Deployed Contract Address | `0xFeADdC1E9B780bd0fc4a2a82eBA8A0CA1BAA4121` |
-| Administrator Address | Read `admin()` from the actual deployed contract |
+| Contract address configured in `frontend/app.js` | `0xFeADdC1E9B780bd0fc4a2a82eBA8A0CA1BAA4121` |
+| Administrator address | Read from `admin()` on the deployment |
 
-**Note:** The contract address and administrator address must be copied from your actual deployment. A new deployment creates a new contract address and fresh contract state.
+The address above is the address recorded in the project configuration for Ganache Local; it is not a public-network deployment. A Ganache workspace is local to the machine and may not contain this contract. After a fresh Remix deployment, update `CONTRACT_ADDRESS` in `frontend/app.js` with the new address and verify it using `eth_getCode` or the frontend. A new deployment creates a new address and fresh contract state.
 
 ## 7. Test Cases and Results
 
@@ -198,11 +194,11 @@ The following test cases evaluate valid inputs, invalid inputs, access-control r
 
 | Test ID | Test Scenario | Input / Action | Expected Result | Observed Result |
 |---|---|---|---|---|
-| TC01 | Add a valid candidate | Candidate name: Obijit Singh | Candidate is added successfully. | Candidate was added successfully. |
-| TC02 | Add another valid candidate | Candidate name: Safin Joash | Candidate is added successfully. | Candidate was added successfully. |
+| TC01 | Add a valid candidate | Candidate name: Alice | Candidate is added successfully. | Candidate was added successfully. |
+| TC02 | Add another valid candidate | Candidate name: Bob | Candidate is added successfully. | Candidate was added successfully. |
 | TC05 | Start the election | Administrator starts the election. | Election status changes to Active. | Election status changed to Active. |
-| TC06 | Cast a valid vote | Voter votes for Obijit Singh using a valid candidate ID. | Transaction succeeds and Obijit Singh's vote count increases. | Transaction succeeded and Obijit Singh's vote count increased. |
-| TC09 | Vote using another wallet | A different voter votes for Safin Joash. | Transaction succeeds and Safin Joash's vote count increases. | Transaction succeeded and Safin Joash's vote count increased. |
+| TC06 | Cast a valid vote | Voter votes for Alice using a valid candidate ID. | Transaction succeeds and Alice's vote count increases. | Transaction succeeded and Alice's vote count increased. |
+| TC09 | Vote using another wallet | A different voter votes for Bob. | Transaction succeeds and Bob's vote count increases. | Transaction succeeded and Bob's vote count increased. |
 | TC11 | End the election | Administrator ends the election. | Election status changes to Ended. | Election status changed to Ended. |
 
 ### 7.2 Invalid Input Test Cases
@@ -232,34 +228,99 @@ The following test cases evaluate valid inputs, invalid inputs, access-control r
 - Verify candidate counts and election status before and after each relevant operation.
 - Invalid inputs and unauthorised operations must be rejected by the smart contract, not merely hidden or disabled by the UI.
 - Record the actual revert messages and transaction details when executing the tests.
-- The tables above were inherited from the supplied README and are a manual test checklist, not evidence of a new Remix or MetaMask run. Fresh automated results are recorded separately in `tests/results.json`.
+- The repository also includes reproducible automated tests: run `npm install` and `npm test`. The test run compiles the contract and executes 22 checks, including valid transactions, invalid inputs, and unauthorized calls against an isolated in-memory Ganache chain. The generated receipts and results are in `tests/results.json`. This automated run is separate from the Remix/MetaMask screenshots below and does not prove that a persistent Ganache workspace contains the configured address.
 
-## 8. Screenshots and evidence
+## 8. Screenshots and Evidence
 
-### Current CampusBallot interface
+The screenshots below document smart contract compilation and deployment, MetaMask connection, successful and failed transactions, and blockchain data displayed by the frontend.
 
-![CampusBallot desktop interface before wallet connection](evidence/customized-interface.png)
+### 8.1 Smart Contract Compilation
 
-![CampusBallot mobile interface and missing-wallet feedback](evidence/mobile-interface.png)
+**Description:** Successful compilation of the `CampusVoting` smart contract using Solidity compiler version `0.8.24`.
 
-These fresh screenshots show this version of the interface. They do not claim a successful wallet connection or deployment.
+**Screenshot:**
 
-### Verified automated transaction evidence
+<img width="954" height="438" alt="Screenshot 2026-10-17 201612" src="https://github.com/user-attachments/assets/794f2aaa-f10a-4f10-aecf-f1bdbc7a1588" />
 
-`tests/results.json` records 22 passing checks, successful transaction receipts, a mined failed transaction, and blockchain data assertions from a fresh isolated Ganache run. The candidate names in that run are Obijit Singh and Safin Joash.
 
-### Required Remix and MetaMask evidence still to capture
 
-The original project's screenshots have been removed because they do not show this customized version. Complete the following on a fresh deployment before LMS submission:
 
-1. Compile `contracts/CampusVoting.sol` in Remix with Solidity 0.8.24 and Paris EVM; capture compilation success.
-2. Deploy through Remix to Ganache; capture the deployment and address, then set that address in `frontend/app.js`.
-3. Connect MetaMask to CampusBallot; capture the connected wallet and correct network.
-4. Register Obijit Singh and Safin Joash, start voting, and cast a vote; capture the transaction confirmation.
-5. Attempt a duplicate vote or unauthorized administrative action; capture the genuine rejection.
-6. Capture the interface showing both candidate names, election status, and retrieved vote totals.
+### 8.2 Smart Contract Deployment
 
-Do not substitute automated test receipts for Remix or MetaMask screenshots.
+**Description:** Successful deployment of the smart contract to the local Ganache blockchain, showing the deployed contract address.
+
+**Screenshot:**
+
+<img width="955" height="442" alt="Screenshot 2026-10-17 201714" src="https://github.com/user-attachments/assets/ea70837c-c984-40db-b95b-7d636e2956b2" />
+
+
+
+
+### 8.3 MetaMask Wallet Connection
+
+**Description:** CampusVoting frontend connected to a MetaMask account on the Ganache network.
+
+**Screenshot:**
+
+<img width="946" height="468" alt="Screenshot 2026-10-17 184318" src="https://github.com/user-attachments/assets/86cc484e-6523-4405-aec6-f5ee95d4f110" />
+<img width="946" height="466" alt="Screenshot 2026-10-17 184341" src="https://github.com/user-attachments/assets/d64da6e7-e75c-4ae5-ab6b-000b6b8c9022" />
+
+
+
+
+### 8.4 Successful Transaction
+
+**Description:** A successful voting transaction showing transaction confirmation and the updated candidate vote count.
+
+**Screenshot:**
+
+<img width="958" height="466" alt="Screenshot 2026-10-17 193026" src="https://github.com/user-attachments/assets/3eb1736c-42eb-45d9-860a-1f11adef0d81" />
+<img width="949" height="476" alt="image" src="https://github.com/user-attachments/assets/25ed3d8a-0ac5-49c5-bd22-bbb2d1f517d7" />
+<img width="632" height="320" alt="Screenshot 2026-10-17 193238" src="https://github.com/user-attachments/assets/8568acb7-9fec-423f-a019-91772660a005" />
+<img width="950" height="466" alt="Screenshot 2026-10-17 210050" src="https://github.com/user-attachments/assets/990765d5-781c-4855-84ad-b0552de748a0" />
+<img width="956" height="469" alt="Screenshot 2026-10-17 210251" src="https://github.com/user-attachments/assets/8e32fa42-d850-4004-a7fb-2b98ab06203e" />
+<img width="941" height="461" alt="Screenshot 2026-10-17 200848" src="https://github.com/user-attachments/assets/d9b50544-cc77-4e30-8d6d-4a0144f2bae8" />
+<img width="956" height="471" alt="Screenshot 2026-10-17 200911" src="https://github.com/user-attachments/assets/637b6505-de2c-4d1d-9c5e-cf10e4e73eb1" />
+<img width="949" height="470" alt="Screenshot 2026-10-17 200933" src="https://github.com/user-attachments/assets/022c348e-b164-42b7-b426-b4e7785774f9" />
+
+
+
+
+
+
+
+
+### 8.5 Failed Transaction
+
+**Description:** A rejected transaction, such as an unauthorised candidate addition or a duplicate voting attempt, demonstrating smart contract validation.
+
+**Screenshot:**
+
+Student starting an election:
+<img width="942" height="461" alt="Screenshot 2026-10-17 195150" src="https://github.com/user-attachments/assets/1e9b63c7-65e0-4801-9166-7de9a3c8a1f5" />
+
+
+Re-vote by the same voter:
+<img width="943" height="472" alt="Screenshot 2026-10-17 195746" src="https://github.com/user-attachments/assets/cfb8a34c-6199-4a1a-bc5d-cdc549e28d17" />
+
+
+### 8.6 Blockchain Data Displayed Through the User Interface
+
+**Description:** The frontend displaying candidate information, vote counts, election status, and connected wallet information retrieved from the deployed smart contract.
+
+**Screenshot:**
+
+<img width="629" height="385" alt="Screenshot 2026-10-17 193058" src="https://github.com/user-attachments/assets/c69ef7ea-359c-4ed0-869e-98eeeccf800f" />
+<img width="803" height="391" alt="Screenshot 2026-10-17 193158" src="https://github.com/user-attachments/assets/e8c3467c-5cad-42ac-af0d-af8c53b6578a" />
+<img width="596" height="380" alt="Screenshot 2026-10-17 195239" src="https://github.com/user-attachments/assets/be7b4b73-1270-4269-89dc-7e5673ceec36" />
+<img width="622" height="294" alt="Screenshot 2026-10-17 195840" src="https://github.com/user-attachments/assets/f16d6d50-28ef-4913-97c9-6b8fd02294c0" />
+<img width="611" height="376" alt="Screenshot 2026-10-17 200942" src="https://github.com/user-attachments/assets/3a2602b5-c102-4dc4-8cab-61fcbc316e6e" />
+
+
+
+
+
+
 
 ## 9. Security and Validation
 
@@ -286,9 +347,3 @@ The frontend improves usability, but it must not be treated as the security boun
 CampusVoting demonstrates how blockchain technology can be used to implement a transparent and rule-enforced voting application. The Solidity smart contract manages candidate registration, administrator permissions, voting eligibility, duplicate-vote prevention, and election status.
 
 By combining Remix IDE, Ganache, MetaMask, Ethers.js, and a web-based frontend, the project provides a practical demonstration of blockchain-based application development and smart contract testing.
-
-## Automated verification
-
-Run `npm install`, then `npm test` from the repository root. Tests compile the actual contract with Solidity 0.8.24 targeting Paris, deploy to an isolated Ganache chain, check valid and rejected operations, retrieve candidate data, and save transaction receipts in `tests/results.json`. The temporary test chain is separate from the frontend deployment. Rejection tests use contract calls to check revert reasons; an additional deliberately invalid mined transaction checks receipt status zero. This does not replace the required Remix and MetaMask screenshots.
-
-Serve the frontend with `python3 -m http.server 8000 --directory frontend` and open http://localhost:8000. Add Obijit Singh with manifesto "Better library access and student facilities" and Safin Joash with manifesto "More student clubs and campus events" before starting voting.
