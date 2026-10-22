@@ -1,5 +1,5 @@
 {
-  "name": "campus-council-vote",
+  "name": "campusballot",
   "version": "1.0.0",
   "private": true,
   "scripts": { "test": "node tests/contract.cjs" },
