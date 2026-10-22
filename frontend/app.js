@@ -403,8 +403,8 @@ async function refreshData() {
 
             card.append(title, manifesto, votes, button);
             list.appendChild(card);
-            await showElectionWinner();
         }
+        await showElectionWinner();
     } catch (error) {
         handleError(error);
     }

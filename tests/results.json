@@ -1,0 +1,135 @@
+{
+  "environment": "Isolated in-memory Ganache 7.9.2; not Remix or MetaMask",
+  "compiler": "0.8.24+commit.e11b9ed9.Emscripten.clang",
+  "evmVersion": "paris",
+  "chainId": 1337,
+  "contractAddress": "0xB9393aB59fE6Fef2cE948603f101A6fc565Ed7E2",
+  "note": "Ephemeral test chain; these addresses and receipts are not the frontend deployment.",
+  "results": [
+    {
+      "name": "Reject empty election name",
+      "result": "PASS"
+    },
+    {
+      "name": "Constructor sets administrator and election name",
+      "result": "PASS"
+    },
+    {
+      "name": "Reject start with fewer than two candidates",
+      "result": "PASS"
+    },
+    {
+      "name": "Reject empty candidate name",
+      "result": "PASS"
+    },
+    {
+      "name": "Reject overlong name",
+      "result": "PASS"
+    },
+    {
+      "name": "Reject overlong manifesto",
+      "result": "PASS"
+    },
+    {
+      "name": "Reject unauthorized candidate addition",
+      "result": "PASS"
+    },
+    {
+      "name": "Add Obijit Singh and Safin Joash and retrieve data",
+      "result": "PASS"
+    },
+    {
+      "name": "Reject vote before opening",
+      "result": "PASS"
+    },
+    {
+      "name": "Reject unauthorized start",
+      "result": "PASS"
+    },
+    {
+      "name": "Start election",
+      "result": "PASS"
+    },
+    {
+      "name": "Reject repeated start",
+      "result": "PASS"
+    },
+    {
+      "name": "Reject candidate addition during voting",
+      "result": "PASS"
+    },
+    {
+      "name": "Reject invalid candidate vote and read",
+      "result": "PASS"
+    },
+    {
+      "name": "Record valid vote and voter state",
+      "result": "PASS"
+    },
+    {
+      "name": "Reject duplicate vote without changing tally",
+      "result": "PASS"
+    },
+    {
+      "name": "Second wallet votes for Safin Joash",
+      "result": "PASS"
+    },
+    {
+      "name": "Reject unauthorized termination",
+      "result": "PASS"
+    },
+    {
+      "name": "End election permanently",
+      "result": "PASS"
+    },
+    {
+      "name": "Reject vote after ending",
+      "result": "PASS"
+    },
+    {
+      "name": "Reject reopening and candidate additions after ending",
+      "result": "PASS"
+    },
+    {
+      "name": "Mined invalid transaction has status zero",
+      "result": "PASS"
+    }
+  ],
+  "successfulReceipts": [
+    {
+      "hash": "0xb2d52950c0fb25102826f79e3680002dc9117e638b626bd3bfb2ae72dd34aae1",
+      "blockNumber": 2,
+      "status": 1
+    },
+    {
+      "hash": "0x6af5c0a3d0cc3b81c16b2a64b8e182c2c94089e79a1280a4bfc337a74ca8fe85",
+      "blockNumber": 3,
+      "status": 1
+    },
+    {
+      "hash": "0xbbefcc7f68c4c111ba66cd398b27c2e3d1f4e12d4542bc528d4a66664c1a6878",
+      "blockNumber": 4,
+      "status": 1
+    },
+    {
+      "hash": "0x8e227b8f590ec78e99dedd6c42fd0f64f54db26552d984407e1ad81b61a780a0",
+      "blockNumber": 5,
+      "status": 1
+    },
+    {
+      "hash": "0xc8a07b735bb46d36fd1611ca140ce5705f8f277dd70aca93440c5cc70c2496ea",
+      "blockNumber": 6,
+      "status": 1
+    },
+    {
+      "hash": "0xfe8cf9384acbd4543adfe65e379a0ea5baadbd17e6ea03fc3fd7ffa4e5fa4f0c",
+      "blockNumber": 7,
+      "status": 1
+    }
+  ],
+  "failedReceipt": {
+    "hash": "0x6b317f5e8a383d29267adecd81e6e9800b35accad77989f2b23c1a36b8bde84e",
+    "blockNumber": 8,
+    "status": 0
+  }
+}
